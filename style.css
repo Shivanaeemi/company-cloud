@@ -16,3 +16,21 @@ h1 {
 h2{
     margin-bottom: 15px;
 }
+
+
+.file-card {
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.file-name {
+    font-weight: bold;
+}
+
+.file-info {
+    margin-top: 5px;
+    font-size: 14px;
+    color: gray;
+}

@@ -4,7 +4,26 @@ const usersContainer = document.getElementById("usersContainer")
 console.log(publicFiles)
 console.log(usersContainer)
 
-
+const publicFilesData = [
+    {
+        id: 1,
+        name: "company-rules.pdf",
+        type: "pdf",
+        size: "2 MB"
+    },
+    {
+        id: 2,
+        name: "company-logo.png",
+        type: "image",
+        size: "500 KB"
+    },
+    {
+        id: 3,
+        name: "welcome.docx",
+        type: "document",
+        size: "1 MB"
+    }
+];
 const usersData =[
     {
         id: 1,
@@ -66,15 +85,35 @@ const usersData =[
 ];
 
 console.log(usersData)
+console.log(publicFilesData)
+
+publicFilesData.forEach(function(file){
+const fileElement = document.createElement("div")
+fileElement.className= "file-card"
+fileElement.innerHTML= ` 
+        <div class="file-name">${file.name}</div>
+        <div class="file-info">${file.type} - ${file.size}</div>
+        `
+publicFiles.appendChild(fileElement)
+})
+
 
 usersData.forEach(function(user){
 const userElement = document.createElement("div")
+userElement.className = "user-card"
 userElement.textContent = user.name;
  usersContainer.appendChild(userElement);
+
 user.files.forEach(function(file){
-const fileElement = document.createElement("p")
-fileElement.textContent = file.name
-usersContainer.appendChild(fileElement)
+const fileElement = document.createElement("div")
+
+    fileElement.className = "file-card"
+
+    fileElement.innerHTML = `
+        <div class="file-name">${file.name}</div>
+        <div class="file-info">${file.type} - ${file.size}</div>
+    `
+userElement.appendChild(fileElement)
 })
 
 });
