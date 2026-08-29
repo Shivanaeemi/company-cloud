@@ -1,5 +1,9 @@
 const publicFiles = document.getElementById("public-files")
 const usersContainer = document.getElementById("usersContainer")
+// const fileDetails = document.getElementById("file-details")
+const fileModal = document.getElementById("file-modal")
+const closeModal = document.getElementById("close-modal")
+const modalFileDetails = document.getElementById("modal-file-details")
 
 console.log(publicFiles)
 console.log(usersContainer)
@@ -24,7 +28,7 @@ const publicFilesData = [
         size: "1 MB"
     }
 ];
-const usersData =[
+const usersContainerData =[
     {
         id: 1,
         name : "ali",
@@ -84,7 +88,7 @@ const usersData =[
     }
 ];
 
-console.log(usersData)
+console.log(usersContainerData)
 console.log(publicFilesData)
 
 publicFilesData.forEach(function(file){
@@ -93,15 +97,26 @@ fileElement.className= "file-card"
 fileElement.innerHTML= ` 
         <div class="file-name">${file.name}</div>
         <div class="file-info">${file.type} - ${file.size}</div>
-        `
+        `;
+        fileElement.addEventListener("click", function(){
+            modalFileDetails.innerHTML= `
+            <h3> File Details </h3>
+            <p> Name: ${file.name} </p>
+            <p> Type: ${file.type} </p>
+            <p> Size: ${file.size} </p>
+            `
+
+            fileModal.style.display = "block"
+        })  
 publicFiles.appendChild(fileElement)
 })
 
 
-usersData.forEach(function(user){
+usersContainerData.forEach(function(user){
 const userElement = document.createElement("div")
 userElement.className = "user-card"
 userElement.textContent = user.name;
+
  usersContainer.appendChild(userElement);
 
 user.files.forEach(function(file){
@@ -113,8 +128,29 @@ const fileElement = document.createElement("div")
         <div class="file-name">${file.name}</div>
         <div class="file-info">${file.type} - ${file.size}</div>
     `
+
+    fileElement.addEventListener("click", function(){
+    modalFileDetails.innerHTML = `
+        <p>Name: ${file.name}</p>
+        <p>Type: ${file.type}</p>
+        <p>Size: ${file.size}</p>
+    `
+
+    fileModal.style.display = "block"
+})
 userElement.appendChild(fileElement)
 })
 
 });
 
+closeModal.addEventListener("click", function(){
+    fileModal.style.display = "none"
+})
+
+fileModal.addEventListener("click", function(event){
+
+    if(event.target === fileModal){
+        fileModal.style.display = "none"}
+    })
+
+ 
